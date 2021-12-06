@@ -1,8 +1,6 @@
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
-public class DataManager {
+public class HardcodatDataManager implements IDataLoader {
 	public ManagerCursuri manager = new ManagerCursuri();
 	// Obiectul rand genereaza numere aleatorii. Folosit in programul de testare
 	public Random rand = new Random();
@@ -10,7 +8,7 @@ public class DataManager {
 	public Student[] dataSetOfStudent = createStudentsData();
 	public Profesor[] dataSetOfProfesor = createProfesorData();
 	
-	public DataManager() {
+	public HardcodatDataManager() {
 		this.createCoursesData();
 	}
 	
@@ -49,16 +47,17 @@ public class DataManager {
 		return setOfStudents;
 	}
 	
-	public void createCoursesData() {
+	public Curs[] createCoursesData() {
 		String curs[] = { "Teoria sistemelor", "Masurari electronice", "Dispozitive electronice", "Structuri de date", "Procesarea semnalelor", "Limba engleza", "Limbaje formale", "PCLP 1", "PCLP 2" };
 		String descriere = "descriere curs";
-		
+		ArrayList<Curs> cursuri = new ArrayList<>();
 		for (String numeCurs : curs) {
 			Set<Student> studentsData = createRandomSetOfStudents();
 			Profesor profesor = dataSetOfProfesor[rand.nextInt(dataSetOfProfesor.length)];
 			Curs c = new Curs(numeCurs, descriere, profesor, studentsData);
-			manager.AddCurs(c);
+			cursuri.add(c);
 		}
+		return cursuri.toArray(new Curs[cursuri.size()]);
 	}
 	
 	public void gradeStudents() {

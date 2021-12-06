@@ -29,6 +29,15 @@ public class TestClass {
 		Settings.initApplication();
 
 		System.out.println(Settings.loadType);
+		IDataLoader dataLoader = Settings.loadType == LOAD_TYPE.HARDCODAT ? new HardcodatDataManager() : new FileDataManager();
+		Profesor[] profesors = dataLoader.createProfesorData();
+		for (Profesor p :
+				profesors) {
+			System.out.println(p);
+		}
+
+
+
 		/* Scanner scanner = new Scanner(System.in);
 		System.out.println("a =");
 		String a = scanner.next();
