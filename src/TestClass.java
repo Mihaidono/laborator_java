@@ -3,6 +3,14 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.io.File;
 
+enum LOAD_TYPE {
+	HARDCODAT, KEYBOARD, FILE
+}
+
+enum DISPLAY_TYPE  {
+	CONSOLA, FISIER, GUI
+}
+
 public class TestClass {
 	public static Student readStudentForm(String line) throws Exception {
 		// Ana, are, mere - String
@@ -18,6 +26,9 @@ public class TestClass {
 	}
 
 	public static void main(String[] args) {
+		Settings.initApplication();
+
+		System.out.println(Settings.loadType);
 		/* Scanner scanner = new Scanner(System.in);
 		System.out.println("a =");
 		String a = scanner.next();
@@ -27,6 +38,8 @@ public class TestClass {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} */
+		/* String propertyName = LOAD_TYPE.FILE.name();
+		System.out.print(propertyName);
 		ArrayList<Student> students = new ArrayList<>();
 		try( Scanner scanner = new Scanner(new File("studenti.csv"))) {
 			while(scanner.hasNextLine()) {
@@ -44,6 +57,6 @@ public class TestClass {
 		for( Student s: students) {
 			System.out.println(s);
 		}
-
+		*/
 	}
 }
