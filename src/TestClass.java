@@ -12,20 +12,9 @@ enum DISPLAY_TYPE  {
 }
 
 public class TestClass {
-	public static Student readStudentForm(String line) throws Exception {
-		// Ana, are, mere - String
-		// String[] substringuri = line.split(","); // -> ["ana", "are", "mere"];
-		try( Scanner rowScanner = new Scanner(line)) {
-			rowScanner.useDelimiter(",");
-			ArrayList<String> properties = new ArrayList<String>();
-			while (rowScanner.hasNext()) {
-				properties.add(rowScanner.next());
-			}
-			return new Student(properties);
-		}
-	}
-
 	public static void main(String[] args) {
-		
+		IDisplayManager displayManager = Settings.displayHashMap.get(Settings.displayType);
+		IDataLoader dataManager = Settings.dataLoaderHashMap.get(Settings.loadType);
+		displayManager.displayStudents(dataManager.createStudentsData());
 	}
 }
