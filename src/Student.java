@@ -1,9 +1,10 @@
 import java.util.*;
 public class Student implements Comparable {
-	String nume;
-	String prenume;
-	int grupa;
-	
+	public String nume;
+	public String prenume;
+	public int grupa;
+
+	public Student() { }
 	Student(String nume, String prenume, int grupa) {
 		this.nume = nume;
 		this.prenume = prenume;

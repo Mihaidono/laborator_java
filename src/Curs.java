@@ -4,12 +4,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Curs  {
-	String nume;
-	String descriere;
-	Profesor profu;
-	Set<Student> studenti;
-	HashMap<Student, Integer> nota;
+	public String nume;
+	public String descriere;
+	public Profesor profu;
+	public Set<Student> studenti;
+	public HashMap<Student, Integer> nota;
 
+	public Curs() { }
 	// Adaugarea profesorului se face in constructor
 	public Curs(String nume, String descriere, Profesor profu, Set<Student> studenti) {
 		this.nume = nume;

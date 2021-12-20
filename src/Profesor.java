@@ -1,7 +1,8 @@
 public class Profesor {
-	String nume;
-	String prenume;
-	
+	public String nume;
+	public String prenume;
+
+	public Profesor() { }
 	public Profesor(String nume, String prenume) {
 		this.nume = nume;
 		this.prenume = prenume;
