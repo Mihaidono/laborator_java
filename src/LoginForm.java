@@ -15,7 +15,7 @@ public class LoginForm {
                         Application.getInstance().login(user);
                         JOptionPane.showMessageDialog(null, "Login successfully!");
                         mainPanel.setVisible(false);
-                        if(user.menuStrategy.getAccountType()==UserAccountType.TEACHER)
+                        if(Application.getInstance().currentUser.menuStrategy.getAccountType()==UserAccountType.TEACHER)
                             owner.setContentPane(new TeacherForm().getPanel1());
                         else owner.setContentPane(new StudentForm().getPanel1());
                     } catch (Exception ex) {
