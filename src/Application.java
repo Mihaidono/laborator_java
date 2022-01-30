@@ -48,6 +48,7 @@ public class Application {
     public void register(String nume,String prenume,String username, String userpassword,UserAccountType accountType ) throws Exception{
         FileDataManager fdm=new FileDataManager();
         RegistryToken=false;
+        boolean exists=false;
         Student[] students;
         Profesor[] profesori;
         try{
@@ -56,12 +57,18 @@ public class Application {
                 for(Student stud:students){
                     if(RegistryToken)
                         break;
-                    if(stud.nume.equals(nume) && stud.prenume.equals(prenume)){
+                    if(stud.nume.equals(nume) && stud.prenume.equals(prenume)){ // verific daca studentul exista in array
                         try (FileOutputStream fos = new FileOutputStream("users.xml")) {
                             XMLEncoder encoder = new XMLEncoder(fos);
                             User newUser=new User(username,userpassword,new StudentStrategy(new Student(nume,prenume, stud.grupa)));
-                            if(!userList.contains(newUser)){
-                                encoder.writeObject(newUser);
+                            for(User u:userList){
+                                if(u.menuStrategy.getAccountHolderInformation().containsValue(nume) &&
+                                  u.menuStrategy.getAccountHolderInformation().containsKey(prenume))
+                                    exists=true;
+                            }
+                            if(!userList.contains(newUser) && exists==false){
+                                userList.add(newUser);
+                                encoder.writeObject(userList);
                                 RegistryToken=true;
                             }else throw new Exception("Utilizatorul deja exista");
                             encoder.close();
@@ -84,8 +91,14 @@ public class Application {
                         try (FileOutputStream fos = new FileOutputStream("users.xml")) {
                             XMLEncoder encoder = new XMLEncoder(fos);
                             User newUser=new User(username,userpassword,new TeacherStrategy(new Profesor(nume,prenume)));
-                            if(!userList.contains(newUser)){
-                                encoder.writeObject(newUser);
+                            for(User u:userList){
+                                if(u.menuStrategy.getAccountHolderInformation().containsValue(nume) &&
+                                        u.menuStrategy.getAccountHolderInformation().containsKey(prenume))
+                                    exists=true;
+                            }
+                            if(!userList.contains(newUser) && exists==false){
+                                userList.add(newUser);
+                                encoder.writeObject(userList);
                                 RegistryToken=true;
                             }else throw new Exception("Utilizatorul deja exista");
                             encoder.close();
