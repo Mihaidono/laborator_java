@@ -8,9 +8,7 @@ public class User {
     public String userName;
     public String password;
     public MenuStrategy menuStrategy;
-    public User() {
-
-    }
+    public User() { }
 
     @Override
     public boolean equals(Object o) {

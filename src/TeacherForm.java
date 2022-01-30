@@ -6,4 +6,9 @@ public class TeacherForm {
     }
 
     private JPanel panel1;
+    private JTabbedPane tabbedPane1;
+    private JLabel OwnerDisplay;
+    private JTable table1;
+    private JTable table2;
+    private JButton updateButton;
 }

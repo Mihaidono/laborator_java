@@ -21,6 +21,19 @@ public class LoginForm {
                 }
             }
         });
+        btnRegister.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame frame = new JFrame("Register GUI");
+                RegisterForm registerForm = new RegisterForm();
+                frame.setContentPane(registerForm.getMainPanel());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.pack();
+                frame.setVisible(true);
+                if(Application.getInstance().getRegistryToken())
+                    frame.dispose();
+            }
+        });
     }
 
     public JPanel getMainPanel() {
@@ -32,5 +45,6 @@ public class LoginForm {
     private JTextField txtUsername;
     private JPasswordField txtPassword;
     private JButton btnLogin;
+    private JButton btnRegister;
     private JFrame owner;
 }
